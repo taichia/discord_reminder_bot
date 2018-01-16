@@ -1,0 +1,11 @@
+{
+  "name": "reminder-bot",
+  "version": "1.0.0",
+  "description": "Tells Pei when to pay rent",
+  "main": "bot.js",
+  "author": "Taichi Akiyama",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "winston": "^2.4.0"
+  }
+}
