@@ -37,8 +37,24 @@ bot.on('message', function (user, userID, channelID, message, evt) {
             case 'ping':
                 bot.sendMessage({ to: channelID, message: 'Pong!' });
             break;
+            case 'rentDays':
+                if (args.length !== 1 && (args[0] !== '' && !isNan(args[0]))) {
+                    bot.sendMessage({ to: channelID, message: 'Wrong syntax, should be !rentDays <int>'});
+                }
+                else {
+                    str = 'Reminding you to pay rent in '
+                    bot.sendMessage({ to: channelID, message: str.concat(args[0], ' day(s).') });
+                    payRent(bot, user, channelID);
+                }
+            break;
             default:
                 bot.sendMessage({ to: channelID, message: 'Unknown command.' });
         }
     }
 })
+
+function payRent(bot, author, channelID){
+    var alert = bot.users.get("name", "NestleFlakes").id + " PAY YOUR RENT";
+    bot.sendMessage({ to: channelID, message: alert });
+    bot.sendMessage({ to: channelID, message: alert });
+}
