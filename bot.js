@@ -42,9 +42,9 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                     bot.sendMessage({ to: channelID, message: 'Wrong syntax, should be !rentDays <int>'});
                 }
                 else {
-                    str = 'Reminding you to pay rent in '
+                    str = 'Reminding you to pay rent in ';
                     bot.sendMessage({ to: channelID, message: str.concat(args[0], ' day(s).') });
-                    payRent(bot, user, channelID);
+                    setTimeout(function(){ payRent(bot, userID, channelID);}, parseInt(args[1])*10000);
                 }
             break;
             default:
@@ -53,8 +53,8 @@ bot.on('message', function (user, userID, channelID, message, evt) {
     }
 })
 
-function payRent(bot, author, channelID){
-    var alert = bot.users.get("name", "NestleFlakes").id + " PAY YOUR RENT";
+function payRent(bot, user, channelID){
+    var alert = "<@" + user + "> PAY YOUR RENT";
     bot.sendMessage({ to: channelID, message: alert });
     bot.sendMessage({ to: channelID, message: alert });
 }
